@@ -54,5 +54,10 @@ describe 'Merchants API endpoints' do
       expect(merchant_1[:data][:attributes]).to have_key(:name)
       expect(merchant_1[:data][:attributes][:name]).to be_a(String)
     end
+
+    it 'returns a status 404 if merchant ID invalid' do
+      get "/api/v1/merchants/158198468461"
+      expect(response.status).to eq(404)
+    end
   end
 end
