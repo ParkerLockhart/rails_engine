@@ -60,4 +60,45 @@ describe 'Merchants API endpoints' do
       expect(response.status).to eq(404)
     end
   end
+
+  describe 'GET merchant items' do
+    before(:each) do
+      merchant_1 = FactoryBot.create(:merchant)
+      create_list(:item, 3, merchant_id: merchant_1.id)
+      get "/api/v1/merchants/#{merchant_1.id}/items"
+    end
+    let!(:items) {JSON.parse(response.body, symbolize_names: true)}
+
+    it 'returns successful' do
+      expect(response).to be_successful
+    end
+    it 'returns correct info' do
+      expect(items).to have_key(:data)
+      expect(items[:data]).to be_an(Array)
+
+      expect(items[:data].count).to eq(3)
+
+      expect(items[:data].first).to have_key(:id)
+      expect(items[:data].first[:id]).to be_a(String)
+
+      expect(items[:data].first).to have_key(:type)
+      expect(items[:data].first[:type]).to eq('item')
+
+      expect(items[:data].first).to have_key(:attributes)
+      expect(items[:data].first[:attributes]).to be_a(Hash)
+
+      attributes = items[:data].first[:attributes]
+      expect(attributes).to have_key(:name)
+      expect(attributes[:name]).to be_a(String)
+
+      expect(attributes).to have_key(:description)
+      expect(attributes[:description]).to be_a(String)
+
+      expect(attributes).to have_key(:unit_price)
+      expect(attributes[:unit_price]).to be_a(Float)
+
+      expect(attributes).to have_key(:merchant_id)
+      expect(attributes[:merchant_id]).to be_an(Integer)
+    end
+  end
 end
