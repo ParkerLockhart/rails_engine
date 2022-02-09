@@ -14,15 +14,26 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     item = Item.new(item_params)
     if item.save
       render json: ItemSerializer.new(Item.find(item.id)), status: :created
-    end 
+    else
+      render json: item.errors, status: :internal_server_error
+    end
   end
 
   def destroy
     render json: Item.delete(params[:id])
   end
 
+  def update
+    item = Item.find(params[:id])
+    if item.update(item_params)
+      render json: ItemSerializer.new(Item.find(params[:id]))
+    else
+      render json: item.errors, status: :not_found
+    end
+  end
+
   def not_found
-    respond_with '{"error": "not_found"}', status: :not_found
+    render json: "Error", status: :not_found
   end
 
 private
