@@ -30,7 +30,7 @@ describe 'Merchants API endpoints' do
 
   describe 'GET merchant' do
     before(:each) do
-      merchant_1 = FactoryBot.create(:merchant)
+      merchant_1 = create(:merchant)
       get "/api/v1/merchants/#{merchant_1.id}"
     end
     let!(:merchant_1) {JSON.parse(response.body, symbolize_names: true)}
@@ -63,7 +63,7 @@ describe 'Merchants API endpoints' do
 
   describe 'GET merchant items' do
     before(:each) do
-      merchant_1 = FactoryBot.create(:merchant)
+      merchant_1 = create(:merchant)
       create_list(:item, 3, merchant_id: merchant_1.id)
       get "/api/v1/merchants/#{merchant_1.id}/items"
     end
