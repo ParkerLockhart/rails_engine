@@ -7,10 +7,10 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def show
-    render json: MerchantSerializer.new(Merchant.find(params[:id])) 
+    render json: MerchantSerializer.new(Merchant.find(params[:id]))
   end
 
   def not_found
-    respond_with '{"error": "not_found"}', status: :not_found
+    render json: "Error", status: :not_found
   end
 end
