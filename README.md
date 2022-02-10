@@ -21,6 +21,7 @@ Welcome to version 1 of Rails Engine API. Below you will find a list of availabl
   - [Create Item](#create-item)
   - [Delete Item](#delete-item)
   - [Update Item](#update-item)
+  - [Get Item Merchant](#get-item-merchant)
   - [Search For Items](#search-for-items)
 
  </details>
@@ -372,7 +373,49 @@ Error
   Error
  ```
    </details>
+   
+  
+   
+## Get Item Merchant
+  Get the primary information for the merchant of an item. 
+  
+  GET http://localhost:3000/api/v1/items/{item_id}/merchant
+  
+  
+  ### Path Parameters
 
+| param | data type | value | required/optional |
+|---|---|---|---|  
+| item_id | integer | valid resource id | required |
+
+ ### Responses
+
+  <details>
+    <summary>  200 OK </summary>
+
+```
+  {
+    data: {
+        id: String,
+        type: "merchant",
+        attributes: {
+            name: String
+        }
+      }
+    }
+```
+  </details>
+
+  <details>
+    <summary> 404 Not Found </summary>
+
+
+```
+ Error
+```
+  </details>
+  
+  
 ## Search For Items
   Get a list of items matching the search term by name.
 
