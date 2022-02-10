@@ -34,33 +34,31 @@ Welcome to version 1 of Rails Engine API. Below you will find a list of availabl
   GET http://localhost:3000/api/v1/merchants
 
   ### Responses
-
-    <details>
-      <summary> 200 OK </summary>
-
-      ```
-       {
-         data: [
-          {
-            id: String,
-            type: "merchant",
-            attributes: {
-              name: String
-              }
-             },
-             id: String,
-             type: "merchant",
-             attributes: {
-              name: String
-              }
+  
+  <details>
+    <summary> 200 OK </summary>
+  
+```
+   {
+       data: [
+        {
+          id: String,
+          type: "merchant",
+          attributes: {
+            name: String
             }
-          ]
-        }
-
-      ```
-    <details>
-
-
+           },
+           id: String,
+           type: "merchant",
+           attributes: {
+            name: String
+            }
+          }
+        ]
+      }
+```
+ </details>
+ 
 ## Get Merchant Details
   Get the primary information about a merchant.
 
@@ -68,35 +66,35 @@ Welcome to version 1 of Rails Engine API. Below you will find a list of availabl
 
   ### Path Parameters
 
-   | param | data type | value | required/optional |
-   |---|---|---|---|
-   | merchant_id | integer | valid resource id | required |
+ | param | data type | value | required/optional |
+ |---|---|---|---|
+ | merchant_id | integer | valid resource id | required |
 
  ### Responses
 
   <details>
     <summary>  200 OK </summary>
 
-    ```
-        {
-          data: {
-              id: String,
-              type: "merchant",
-              attributes: {
-                  name: String
-              }
-          }
+```
+  {
+    data: {
+        id: String,
+        type: "merchant",
+        attributes: {
+            name: String
+        }
       }
-    ```
+    }
+```
   </details>
 
   <details>
     <summary> 404 Not Found </summary>
 
 
-    ```
-     Error
-    ```
+```
+ Error
+```
   </details>
 
 ## Get Merchant Items
@@ -106,49 +104,49 @@ Welcome to version 1 of Rails Engine API. Below you will find a list of availabl
 
   ### Path Parameters
 
-  | param | data type | value | required/optional |
-  |---|---|---|---|
-  | merchant_id | integer | valid resource id | required |
+| param | data type | value | required/optional |
+|---|---|---|---|
+| merchant_id | integer | valid resource id | required |
 
   ### Responses
 
   <details>
     <summary> 200 OK </summary>
 
-    ```
+```
+{
+  data: [
       {
-        data: [
-            {
-                id: String,
-                type: "item",
-                attributes: {
-                    name: String,
-                    description: String,
-                    unit_price: Float,
-                    merchant_id: Integer
-                }
-            },
-            {
-                id: String,
-                type: "item",
-                attributes: {
-                    name: String,
-                    description: String,
-                    unit_price: Float,
-                    merchant_id: Integer
-                }
-            }
-        ]
-      }
-    ```
+          id: String,
+          type: "item",
+          attributes: {
+              name: String,
+              description: String,
+              unit_price: Float,
+              merchant_id: Integer
+          }
+      },
+      {
+          id: String,
+          type: "item",
+          attributes: {
+              name: String,
+              description: String,
+              unit_price: Float,
+              merchant_id: Integer
+          }
+        }
+      ]
+   }
+```
   </details>
 
   <details>
     <summary> 404 Not Found </summary>
 
-    ```
-      Error
-    ```
+```
+Error
+```
   </details>
 
 ## Find A Merchant
@@ -157,37 +155,37 @@ Welcome to version 1 of Rails Engine API. Below you will find a list of availabl
   GET http://localhost:3000/api/v1/merchants/find?name={query}
 
   ### Path Parameters
-
-     | param | data type | value | required/optional |
-   |---|---|---|
-   | query | string | search term | required |
-
-  ### Responses
-
-     <details>
-       <summary>  200 OK </summary>
-
-       ```
-           {
-             data: {
-                 id: String,
-                 type: "merchant",
-                 attributes: {
-                     name: String
-                 }
-             }
-         }
-       ```
-     </details>
-
-     <details>
-       <summary> 404 Not Found </summary>
+| param | data type | value | required/optional |
+|---|---|---|---|
+| query | string | search term | required |
 
 
-       ```
-        Error
-       ```
-     </details>
+ ### Responses
+
+  <details>
+    <summary>  200 OK </summary>
+
+```
+  {
+    data: {
+        id: String,
+        type: "merchant",
+        attributes: {
+            name: String
+        }
+      }
+    }
+```
+  </details>
+
+  <details>
+    <summary> 404 Not Found </summary>
+
+
+```
+ Error
+```
+  </details>
 
 ## Get All Items
   Get a list of all items in the database.
@@ -199,32 +197,32 @@ Welcome to version 1 of Rails Engine API. Below you will find a list of availabl
   <details>
     <summary>  200 OK </summary>
 
-    ```
+```
+  {
+    data: [
       {
-        data: [
-          {
-              id: String,
-              type: "item",
-              attributes: {
-                  name: String,
-                  description: String,
-                  unit_price: Float,
-                  merchant_id: Integer
-              }
-          },
-          {
-              id: String,
-              type: "item",
-              attributes: {
-                  name: String,
-                  description: String,
-                  unit_price: Float,
-                  merchant_id: Integer
-                }
+          id: String,
+          type: "item",
+          attributes: {
+              name: String,
+              description: String,
+              unit_price: Float,
+              merchant_id: Integer
           }
-        ]
-      }
-    ```
+      },
+      {
+          id: String,
+          type: "item",
+          attributes: {
+              name: String,
+              description: String,
+              unit_price: Float,
+              merchant_id: Integer
+            }
+        }
+      ]
+    }
+```
   </details>
 
 ## Get Item Details
@@ -233,41 +231,40 @@ Welcome to version 1 of Rails Engine API. Below you will find a list of availabl
   GET http://localhost:3000/api/v1/items/{item_id}
 
   ### Path Parameters
-
-  | param | data type | value | required/optional |
-  |---|---|---|
-  |  merchant_id | integer | valid resource id | required |
+| param | data type | value | required/optional |
+|---|---|---|---|
+| item_id | integer | valid resource id | required |
 
 
   ### Responses
 
-     <details>
-       <summary>  200 OK </summary>
+   <details>
+     <summary>  200 OK </summary>
 
-        ```
-          {
-           data: {
-             id: String,
-             type: "item",
-             attributes: {
-                 name: String,
-                 description: String,
-                 unit_price: Float,
-                 merchant_id: Integer
-               }
-          }
-        }
-      ```
-     </details>
+```
+  {
+   data: {
+     id: String,
+     type: "item",
+     attributes: {
+         name: String,
+         description: String,
+         unit_price: Float,
+         merchant_id: Integer
+       }
+    }
+  }
+```
+   </details>
 
-     <details>
-       <summary> 404 Not Found </summary>
+   <details>
+     <summary> 404 Not Found </summary>
 
 
-       ```
-        Error
-       ```
-     </details>
+ ```
+  Error
+ ```
+   </details>
 
 
 ## Create Item
@@ -278,35 +275,35 @@ Welcome to version 1 of Rails Engine API. Below you will find a list of availabl
   ### Request Body Requirements
     Request body must contain all of these attributes for item record to be created.
 
-  ```json
-      {
-    "name": String,
-    "description": String,
-    "unit_price": Float,
-    "merchant_id": Integer
-    }
-  ```
+```
+{
+  "name": String,
+  "description": String,
+  "unit_price": Float,
+  "merchant_id": Integer
+  }
+```
 
   ### Responses
 
-     <details>
-       <summary>  201 Created </summary>
+   <details>
+     <summary>  201 Created </summary>
 
-        ```
-          {
-           data: {
-             id: String,
-             type: "item",
-             attributes: {
-                 name: String,
-                 description: String,
-                 unit_price: Float,
-                 merchant_id: Integer
-               }
-          }
-        }
-      ```
-     </details>
+```
+  {
+   data: {
+     id: String,
+     type: "item",
+     attributes: {
+         name: String,
+         description: String,
+         unit_price: Float,
+         merchant_id: Integer
+       }
+    }
+  }
+```
+   </details>
 
 ## Delete Item
   Delete an item record from the database.
@@ -315,13 +312,13 @@ Welcome to version 1 of Rails Engine API. Below you will find a list of availabl
 
   ### Path Parameters
 
-  | param | data type | value | required/optional |
-  |---|---|---|
-  |  merchant_id | integer | valid resource id | required |
+| param | data type | value | required/optional |
+|---|---|---|---|  
+|  merchant_id | integer | valid resource id | required |
 
   ### Responses
 
-    204 No Content
+204 No Content
 
 
 ## Update Item
@@ -331,50 +328,50 @@ Welcome to version 1 of Rails Engine API. Below you will find a list of availabl
 
   ### Path Parameters
 
-  | param | data type | value | required/optional |
-  |---|---|---|
-  |  merchant_id | integer | valid resource id | required |
+| param | data type | value | required/optional |
+|---|---|---|---|   
+|  merchant_id | integer | valid resource id | required |
 
   ### Request Body Options
     Request body may contain any or all of these attributes to update item information.
-  ```json
-      {
-    "name": String,
-    "description": String,
-    "unit_price": Float,
-    "merchant_id": Integer
-    }
-  ```
+```
+{
+  "name": String,
+  "description": String,
+  "unit_price": Float,
+  "merchant_id": Integer
+}
+```
 
   ### Responses
 
-     <details>
-       <summary>  200 OK </summary>
+   <details>
+     <summary>  200 OK </summary>
 
-        ```
-          {
-           data: {
-             id: String,
-             type: "item",
-             attributes: {
-                 name: String,
-                 description: String,
-                 unit_price: Float,
-                 merchant_id: Integer
-               }
-          }
-        }
-      ```
-     </details>
+  ```
+    {
+     data: {
+       id: String,
+       type: "item",
+       attributes: {
+           name: String,
+           description: String,
+           unit_price: Float,
+           merchant_id: Integer
+         }
+      }
+    }
+```
+   </details>
 
-     <details>
-       <summary> 404 Not Found </summary>
+   <details>
+     <summary> 404 Not Found </summary>
 
 
-       ```
-        Error
-       ```
-     </details>
+ ```
+  Error
+ ```
+   </details>
 
 ## Search For Items
   Get a list of items matching the search term by name.
@@ -383,41 +380,41 @@ Welcome to version 1 of Rails Engine API. Below you will find a list of availabl
 
   ### Path Parameters
 
-    | param | data type | value | required/optional |
-    |---|---|---|
-    | query | string | search term | required |
+| param | data type | value | required/optional |
+|---|---|---|---|  
+| query | string | search term | required |
 
-    ### Responses
+  ### Responses
 
-    <details>
-      <summary>  200 OK </summary>
+  <details>
+    <summary>  200 OK </summary>
 
-      ```
-        {
-          data: [
-            {
-                id: String,
-                type: "item",
-                attributes: {
-                    name: String,
-                    description: String,
-                    unit_price: Float,
-                    merchant_id: Integer
-                }
-            },
-            {
-                id: String,
-                type: "item",
-                attributes: {
-                    name: String,
-                    description: String,
-                    unit_price: Float,
-                    merchant_id: Integer
-                  }
+```
+  {
+    data: [
+      {
+          id: String,
+          type: "item",
+          attributes: {
+              name: String,
+              description: String,
+              unit_price: Float,
+              merchant_id: Integer
+          }
+      },
+      {
+          id: String,
+          type: "item",
+          attributes: {
+              name: String,
+              description: String,
+              unit_price: Float,
+              merchant_id: Integer
             }
-          ]
-        }
-      ```
-    </details>
+      }
+    ]
+  }
+```
+  </details>
 
     
