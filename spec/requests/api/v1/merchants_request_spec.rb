@@ -103,4 +103,45 @@ describe 'Merchants API endpoints' do
       end
     end
   end
+
+  describe 'GET merchant search by name' do
+    before(:each) do
+      merchant_1 = create(:merchant, name: "Observe")
+      merchant_2 = create(:merchant, name: "Preserve")
+      merchant_3 = create(:merchant, name: "Deserve")
+      merchant_4 = create(:merchant, name: "Conserve")
+
+      get "/api/v1/merchants/find?name=serve"
+    end
+    let!(:search_result) {JSON.parse(response.body, symbolize_names: true)}
+
+    it 'returns successful' do
+      expect(response).to be_successful
+    end
+
+    it 'returns correct info' do
+      expect(search_result).to have_key(:data)
+      expect(search_result[:data]).to be_a(Hash)
+
+      expect(search_result[:data]).to have_key(:id)
+      expect(search_result[:data][:id]).to be_a(String)
+
+      expect(search_result[:data]).to have_key(:type)
+      expect(search_result[:data][:type]).to eq('merchant')
+
+      expect(search_result[:data]).to have_key(:attributes)
+      expect(search_result[:data][:attributes]).to be_a(Hash)
+
+      expect(search_result[:data][:attributes]).to have_key(:name)
+      expect(search_result[:data][:attributes][:name]).to be_a(String)
+      expect(search_result[:data][:attributes][:name]).to eq("Conserve")
+    end
+
+    it 'returns status 404 if no record found' do
+      get "/api/v1/merchants/find?name=xzz"
+
+      expect(response.status).to eq(404)
+    end
+  end
+
 end
