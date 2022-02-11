@@ -178,4 +178,55 @@ describe 'Items API endpoints' do
       expect(response.status).to eq(404)
     end
   end
+
+  describe 'GET items search by name' do
+    before(:each) do
+      @item_1 = create(:item, name: "Observe")
+      @item_2 = create(:item, name: "Preserve")
+      @item_3 = create(:item, name: "Deserve")
+      @item_4 = create(:item, name: "Conserve")
+      @item_5 = create(:item, name: "Pikachu" )
+      @item_6 = create(:item, name: "Shirt")
+
+      get '/api/v1/items/find_all?name=serve'
+    end
+    let!(:search_result) {JSON.parse(response.body, symbolize_names: true)}
+
+    it 'returns successful' do
+      expect(response).to be_successful
+    end
+
+    it 'returns correct number of objects' do
+      expect(search_result[:data].count).to eq(4)
+    end
+
+    it 'returns correct results' do
+      expect(search_result[:data][0][:attributes][:name]).to eq(@item_1.name)
+      expect(search_result[:data][1][:attributes][:name]).to eq(@item_2.name)
+      expect(search_result[:data][2][:attributes][:name]).to eq(@item_3.name)
+      expect(search_result[:data][3][:attributes][:name]).to eq(@item_4.name)
+    end
+
+    it 'returns correct info for each object' do
+      search_result[:data].each do |item|
+        expect(item).to have_key(:id)
+        expect(item[:id]).to be_a(String)
+
+        expect(item).to have_key(:attributes)
+        expect(item[:attributes]).to be_a(Hash)
+
+        expect(item[:attributes]).to have_key(:name)
+        expect(item[:attributes][:name]).to be_a(String)
+
+        expect(item[:attributes]).to have_key(:description)
+        expect(item[:attributes][:description]).to be_a(String)
+
+        expect(item[:attributes]).to have_key(:unit_price)
+        expect(item[:attributes][:unit_price]).to be_a(Float)
+
+        expect(item[:attributes]).to have_key(:merchant_id)
+        expect(item[:attributes][:merchant_id]).to be_an(Integer)
+      end
+    end
+  end
 end
